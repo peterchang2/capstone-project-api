@@ -16,7 +16,7 @@ group :development, :test do
   gem 'pry', '~> 0.11.3'
   gem 'pry-byebug', '~> 3.6.0'
   gem 'rspec-rails', '~> 3.7.2'
-  gem 'rubocop', '~> 0.52.1'
+  gem 'rubocop', '~> 0.63.0'
 end
 
 group :development do
@@ -24,6 +24,7 @@ group :development do
   gem 'pry-rails', '~> 0.3.6'
   gem 'spring', '~> 2.0.2'
   gem 'spring-commands-rspec', '~> 1.0.4'
+  gem 'csv', '~> 3.0.3'
 end
 
 group :production do
