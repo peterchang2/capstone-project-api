@@ -9,3 +9,27 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+require 'csv'
+
+# csv_text = File.read(Rails.root.join('db', 'whiskey.csv'))
+
+# csv = CSV.parse(csv_text, headers: true, :col_sep => ',', row_sep: :auto)
+# csv.map(&:to_hash)[0..1509].each do |row|
+#   whiskeys = {
+#     name: row['Name'],
+#     meta_critic: row['Meta Critic'].to_f,
+#     cost: row['Cost'],
+#     class: row['Class'],
+#     country: row['Country'],
+#     type: row['Type']
+#   }
+# Whiskey.create(whiskeys)
+# p whiskeys
+
+csv_text = File.read('whiskey.csv')
+csv = CSV.parse(csv_text, :headers => true)
+csv.each do |row|
+  Whiskey.create!(row.to_hash)
+
+end
