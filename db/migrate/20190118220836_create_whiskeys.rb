@@ -4,7 +4,7 @@ class CreateWhiskeys < ActiveRecord::Migration[5.2]
       t.string :name
       t.float :meta_critic
       t.string :cost
-      t.string :class
+      t.string :whiskey_class
       t.string :country
       t.string :whiskey_type
 

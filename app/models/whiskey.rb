@@ -1,2 +1,3 @@
 class Whiskey < ApplicationRecord
+
 end

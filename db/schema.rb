@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2019_01_18_220836) do
     t.string "name"
     t.float "meta_critic"
     t.string "cost"
-    t.string "class"
+    t.string "whiskey_class"
     t.string "country"
     t.string "whiskey_type"
     t.datetime "created_at", null: false
