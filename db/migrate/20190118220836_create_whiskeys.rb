@@ -6,7 +6,7 @@ class CreateWhiskeys < ActiveRecord::Migration[5.2]
       t.string :cost
       t.string :class
       t.string :country
-      t.string :type
+      t.string :whiskey_type
 
       t.timestamps
     end
