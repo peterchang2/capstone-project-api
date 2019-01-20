@@ -39,13 +39,14 @@ class WhiskeysController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_whiskey
-      @whiskey = Whiskey.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def whiskey_params
-      params.require(:whiskey).permit(:name, :meta_critic, :cost, :class, :country, :type)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_whiskey
+    @whiskey = Whiskey.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def whiskey_params
+    params.require(:whiskey).permit(:name, :meta_critic, :cost, :whiskey_class, :country, :whiskey_type)
+  end
 end
