@@ -1,21 +1,21 @@
-class WhiskeysController < ApplicationController
+class WhiskeysController < OpenReadController
   before_action :set_whiskey, only: [:show, :update, :destroy]
 
   # GET /whiskeys
   def index
     @whiskeys = Whiskey.all
 
-    render json: @whiskeys
+    render json: @whiskeys, include: ['user']
   end
 
   # GET /whiskeys/1
   def show
-    render json: @whiskey
+    render json: @whiskey, include: ['user']
   end
 
   # POST /whiskeys
   def create
-    @whiskey = Whiskey.new(whiskey_params)
+    @whiskey = current_user.whiskeys.build(whiskey_params)
 
     if @whiskey.save
       render json: @whiskey, status: :created, location: @whiskey

@@ -1,10 +1,9 @@
-class WishesController < ApplicationController
+class WishesController < ProtectedController
   before_action :set_wish, only: [:show, :update, :destroy]
 
   # GET /wishes
   def index
-    @wishes = Wish.all
-
+    @wishes = current_user.wishes
     render json: @wishes
   end
 
@@ -15,7 +14,7 @@ class WishesController < ApplicationController
 
   # POST /wishes
   def create
-    @wish = Wish.new(wish_params)
+    @wish = current_user.wishes.build(wish_params)
 
     if @wish.save
       render json: @wish, status: :created, location: @wish
@@ -39,13 +38,14 @@ class WishesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_wish
-      @wish = Wish.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def wish_params
-      params.require(:wish).permit(:user_id, :whiskey_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_wish
+    @wish = current_user.wishes.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def wish_params
+    params.require(:wish).permit(:user_id, :whiskey_id)
+  end
 end
