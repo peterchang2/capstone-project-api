@@ -1,10 +1,9 @@
 class FavoritesController < ProtectedController
   before_action :set_favorite, only: [:show, :update, :destroy]
 
-  # GET /favorites
+  # GET /favorites current_user.favorites
   def index
     @favorites = current_user.favorites
-
     render json: @favorites
   end
 
@@ -15,7 +14,7 @@ class FavoritesController < ProtectedController
 
   # POST /favorites
   def create
-    @favorite = current_user.favorites.new(favorite_params)
+    @favorite = current_user.favorites.build(favorite_params)
 
     if @favorite.save
       render json: @favorite, status: :created, location: @favorite
@@ -39,6 +38,7 @@ class FavoritesController < ProtectedController
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_favorite
     @favorite = current_user.favorites.find(params[:id])
@@ -46,6 +46,6 @@ class FavoritesController < ProtectedController
 
   # Only allow a trusted parameter "white list" through.
   def favorite_params
-    params.require(:favorite).permit(:user_id, :whiskey_id)
+    params.require(:favorite).permit(:user_id, :whiskey_id, :user_score)
   end
 end
